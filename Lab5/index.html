@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронная очередь - Банк</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#home" class="logo">MyBank</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#new-booking">Записаться онлайн</a></li>
+                    <li><a href="#employee-login">Вход для сотрудников</a></li>
+                    <li><a href="#admin-login">Вход для администратора</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ЭКРАН 1: Главная форма (пустая) -->
+        <section id="home" class="screen active">
+            <h1>Добро пожаловать в систему электронной очереди</h1>
+            <p>Выберите удобный для вас способ записи:</p>
+            <div class="action-buttons">
+                <a href="#new-booking" class="btn btn-primary">Записаться на прием онлайн</a>
+                <a href="#kiosk-view" class="btn">Инструкция для терминала в банке</a>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 2: Формы просмотра информации -->
+        <section id="kiosk-view" class="screen">
+            <h2>Меню услуг в терминале банка</h2>
+            <ul class="service-list">
+                <li>Работа со счетом</li>
+                <li>Взять кредит</li>
+                <li>Открыть счёт</li>
+                <li>Оплата</li>
+            </ul>
+            <a href="#home" class="btn">Вернуться на главную</a>
+        </section>
+
+        <!-- ЭКРАН 3: Форма добавления информации (для клиента) -->
+        <section id="new-booking" class="screen">
+            <h2>Онлайн-запись на обслуживание</h2>
+            <form class="styled-form">
+                <!-- Поля формы: ФИО, Телефон/Email, Услуга, Дата, Время -->
+                <div class="form-group"><label for="fullName">ФИО:</label><input type="text" id="fullName" required></div>
+                <div class="form-group"><label for="contact">Телефон или Email:</label><input type="text" id="contact" required></div>
+                <div class="form-group"><label for="service">Услуга:</label><select id="service"><option>Работа со счетом</option><option>Взять кредит</option></select></div>
+                <div class="form-group"><label for="visitDate">Дата:</label><input type="date" id="visitDate" required></div>
+                <div class="form-group"><label for="visitTime">Время:</label><input type="time" id="visitTime" required></div>
+                <button type="submit" class="btn btn-primary">Подтвердить запись</button>
+            </form>
+        </section>
+        
+        <!-- ЭКРАН 4: Форма авторизации (для сотрудника) -->
+        <section id="employee-login" class="screen">
+            <h2>Вход для сотрудников</h2>
+            <form class="styled-form">
+                <div class="form-group"><label for="username">Логин:</label><input type="text" id="username"></div>
+                <div class="form-group"><label for="password">Пароль:</label><input type="password" id="password"></div>
+                <a href="#employee-dashboard" class="btn btn-primary">Войти</a>
+            </form>
+        </section>
+        
+        <!-- ЭКРАН 5: Форма поиска/просмотра информации (панель сотрудника) -->
+        <section id="employee-dashboard" class="screen">
+            <h2>Панель управления очередью</h2>
+            <div class="toolbar">
+                <input type="search" placeholder="Поиск по ФИО или телефону...">
+                <button class="btn">Фильтр по дате</button>
+                <button class="btn">Сортировать по времени</button>
+                <a href="#add-by-employee" class="btn btn-primary">Добавить клиента</a>
+            </div>
+
+            <div class="list-container">
+                <article class="list-item">
+                    <div class="item-info"><strong>Иванов Иван Иванович</strong><span>Услуга: Взять кредит</span><span>Время: 14:30</span></div>
+                    <div class="item-actions">
+                        <a href="#edit-booking" class="btn btn-secondary">Редактировать</a>
+                        <a href="#delete-confirm" class="btn btn-danger">Удалить</a>
+                    </div>
+                </article>
+                <article class="list-item">
+                    <div class="item-info"><strong>Петрова Анна Сергеевна</strong><span>Услуга: Открыть счёт</span><span>Время: 14:45</span></div>
+                    <div class="item-actions">
+                        <a href="#edit-booking" class="btn btn-secondary">Редактировать</a>
+                        <a href="#delete-confirm" class="btn btn-danger">Удалить</a>
+                    </div>
+                </article>
+            </div>
+            <div class="pagination"><button class="btn">Назад</button><span>Страница 1 из 5</span><button class="btn">Вперед</button></div>
+        </section>
+
+        <!-- ЭКРАН 6: Формы добавления/редактирования/удаления -->
+        <!-- 6.1 Форма добавления (сотрудником) -->
+        <section id="add-by-employee" class="screen">
+            <h2>Добавление записи для клиента</h2>
+            <form class="styled-form"><!-- Аналогична форме #new-booking --></form>
+        </section>
+
+        <!-- 6.2 Форма редактирования -->
+        <section id="edit-booking" class="screen">
+            <h2>Редактирование записи</h2>
+            <form class="styled-form">
+                <!-- Поля предзаполнены данными существующей записи -->
+                <div class="form-group"><label for="editFullName">ФИО:</label><input type="text" id="editFullName" value="Иванов Иван Иванович"></div>
+                <div class="form-group"><label for="editService">Услуга:</label><select id="editService"><option>Взять кредит</option></select></div>
+                <div class="form-group"><label for="editVisitTime">Время:</label><input type="time" id="editVisitTime" value="14:30"></div>
+                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                <a href="#employee-dashboard" class="btn">Отмена</a>
+            </form>
+        </section>
+
+        <!-- 6.3 Форма удаления (подтверждение) -->
+        <section id="delete-confirm" class="screen">
+            <div class="confirmation-box">
+                <h2>Подтверждение удаления</h2>
+                <p>Вы уверены, что хотите удалить запись для "Иванов Иван Иванович" на 14:30?</p>
+                <a href="#employee-dashboard" class="btn btn-danger">Да, удалить</a>
+                <a href="#employee-dashboard" class="btn">Отмена</a>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 7: Форма для администратора -->
+        <!-- 7.1 Форма авторизации администратора -->
+        <section id="admin-login" class="screen">
+            <h2>Вход для администратора</h2>
+            <form class="styled-form">
+                <div class="form-group"><label for="admin-username">Логин:</label><input type="text" id="admin-username"></div>
+                <div class="form-group"><label for="admin-password">Пароль:</label><input type="password" id="admin-password"></div>
+                <a href="#admin-dashboard" class="btn btn-primary">Войти</a>
+            </form>
+        </section>
+
+        <!-- 7.2 Панель администратора: просмотр и поиск пользователей -->
+        <section id="admin-dashboard" class="screen">
+            <h2>Панель администратора: Управление пользователями</h2>
+            <div class="toolbar">
+                <input type="search" placeholder="Поиск пользователя по логину или ФИО...">
+                <a href="#admin-add-user" class="btn btn-primary">Добавить пользователя</a>
+            </div>
+            <div class="list-container">
+                <article class="list-item">
+                    <div class="item-info"><strong>Сидоров Петр Алексеевич</strong><span>Логин: p.sidorov</span><span>Роль: Сотрудник</span></div>
+                    <div class="item-actions">
+                        <a href="#admin-edit-user" class="btn btn-secondary">Редактировать</a>
+                        <a href="#delete-confirm-user" class="btn btn-danger">Удалить</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 7.3 Форма добавления пользователя (администратором) -->
+        <section id="admin-add-user" class="screen">
+            <h2>Добавление нового пользователя</h2>
+            <form class="styled-form">
+                <div class="form-group"><label for="user-fio">ФИО:</label><input type="text" id="user-fio"></div>
+                <div class="form-group"><label for="user-login">Логин:</label><input type="text" id="user-login"></div>
+                <div class="form-group"><label for="user-role">Роль:</label><select id="user-role"><option>Сотрудник</option><option>Администратор</option></select></div>
+                <button type="submit" class="btn btn-primary">Создать пользователя</button>
+                <a href="#admin-dashboard" class="btn">Отмена</a>
+            </form>
+        </section>
+        
+        <!-- 7.4 Форма редактирования пользователя (администратором) -->
+        <section id="admin-edit-user" class="screen">
+            <h2>Редактирование пользователя</h2>
+            <!-- Аналогична форме добавления, но с предзаполненными полями -->
+             <form class="styled-form">
+                <div class="form-group"><label for="edit-user-fio">ФИО:</label><input type="text" id="edit-user-fio" value="Сидоров Петр Алексеевич"></div>
+                <div class="form-group"><label for="edit-user-login">Логин:</label><input type="text" id="edit-user-login" value="p.sidorov"></div>
+                <div class="form-group"><label for="edit-user-role">Роль:</label><select id="edit-user-role"><option selected>Сотрудник</option><option>Администратор</option></select></div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="#admin-dashboard" class="btn">Отмена</a>
+            </form>
+        </section>
+
+        <!-- 7.5 Форма подтверждения удаления пользователя -->
+        <section id="delete-confirm-user" class="screen">
+             <div class="confirmation-box">
+                <h2>Подтверждение удаления</h2>
+                <p>Вы уверены, что хотите удалить пользователя "p.sidorov"?</p>
+                <a href="#admin-dashboard" class="btn btn-danger">Да, удалить</a>
+                <a href="#admin-dashboard" class="btn">Отмена</a>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 8: Форма "Ошибка" -->
+        <section id="error" class="screen">
+            <h2>Ошибка 404</h2>
+            <p>К сожалению, запрашиваемая страница не найдена.</p>
+            <a href="#home" class="btn">Вернуться на главную</a>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 MyBank. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
