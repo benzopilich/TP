@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронная очередь - Банк</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#home" class="logo">MyBank</a>
+            <nav class="main-nav">
+                <!-- Меню будет обновляться через JS в зависимости от пользователя -->
+                <ul id="nav-list">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#new-booking">Записаться онлайн</a></li>
+                    <li><a href="#employee-login">Вход для сотрудников</a></li>
+                </ul>
+                <!-- Блок для отображения текущего пользователя -->
+                <div id="user-info" style="color: white; margin-left: 20px; font-weight: bold;"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ЭКРАН 1: Главная -->
+        <section id="home" class="screen">
+            <h1>Добро пожаловать в систему электронной очереди</h1>
+            <p>Выберите удобный для вас способ записи:</p>
+            <div class="action-buttons">
+                <a href="#new-booking" class="btn btn-primary">Записаться на прием онлайн</a>
+                <a href="#kiosk-view" class="btn">Инструкция для терминала в банке</a>
+            </div>
+        </section>
+
+        <!-- ЭКРАН 2: Терминал -->
+        <section id="kiosk-view" class="screen">
+            <h2>Меню услуг в терминале банка</h2>
+            <ul class="service-list">
+                <li>Работа со счетом</li>
+                <li>Взять кредит</li>
+                <li>Открыть счёт</li>
+                <li>Оплата</li>
+            </ul>
+            <a href="#home" class="btn">Вернуться на главную</a>
+        </section>
+
+        <!-- ЭКРАН 3: Запись клиента -->
+        <section id="new-booking" class="screen">
+            <h2>Онлайн-запись на обслуживание</h2>
+            <form class="styled-form" onsubmit="event.preventDefault();">
+                <div class="form-group"><label for="fullName">ФИО:</label><input type="text" id="fullName"></div>
+                <div class="form-group"><label for="contact">Телефон или Email:</label><input type="text" id="contact"></div>
+                <div class="form-group"><label for="service">Услуга:</label>
+                    <select id="service">
+                        <option>Работа со счетом</option>
+                        <option>Взять кредит</option>
+                        <option>Открыть счёт</option>
+                        <option>Оплата</option>
+                    </select>
+                </div>
+                <div class="form-group"><label for="visitDate">Дата:</label><input type="date" id="visitDate"></div>
+                <div class="form-group"><label for="visitTime">Время:</label><input type="time" id="visitTime"></div>
+                <button class="btn btn-primary" onclick="consoleAddFromForm()">Подтвердить запись</button>
+            </form>
+        </section>
+        
+        <!-- ЭКРАН 4: Логин -->
+        <section id="employee-login" class="screen">
+            <h2>Вход</h2>
+            <form class="styled-form" onsubmit="event.preventDefault();">
+                <div class="form-group"><label for="username">Логин:</label><input type="text" id="username"></div>
+                <a href="#employee-dashboard" class="btn btn-primary" onclick="changeUser('Employee')">Войти как Сотрудник</a>
+            </form>
+        </section>
+        
+        <!-- ЭКРАН 5: Панель сотрудника (Здесь будет основной вывод JS) -->
+        <section id="employee-dashboard" class="screen">
+            <h2>Панель управления очередью</h2>
+            <div class="toolbar">
+                <input type="search" id="search-input" placeholder="Поиск по ФИО..." oninput="handleSearch(this.value)">
+                <button class="btn" onclick="applyFilter('date')">Сорт. по дате</button>
+            </div>
+
+            <!-- Контейнер для списка (очищается и заполняется JS) -->
+            <div class="list-container" id="booking-list">
+                <!-- JS вставит сюда элементы -->
+            </div>
+            
+            <div class="pagination">
+                <button class="btn" onclick="loadMore()">Загрузить еще</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 MyBank. Лабораторная работа 6.</p>
+        </div>
+    </footer>
+
+    <!-- Подключение скрипта -->
+    <script src="script.js"></script>
+</body>
+</html>
