@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронная очередь - Банк</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#home" class="logo">MyBank</a>
+            <nav class="main-nav">
+                <ul id="nav-list">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#new-booking">Записаться онлайн</a></li>
+                    <li><a href="#employee-login" id="nav-login-link">Вход для сотрудников</a></li>
+                </ul>
+                <div id="user-info" style="color: white; margin-left: 20px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                    <span id="username-display"></span>
+                    <button id="logout-btn" class="btn btn-danger" style="display: none; padding: 5px 10px; font-size: 0.8rem;">Выйти</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="home" class="screen">
+            <h1>Добро пожаловать в систему электронной очереди</h1>
+            <p>Выберите удобный для вас способ записи:</p>
+            <div class="action-buttons">
+                <a href="#new-booking" class="btn btn-primary">Записаться на прием онлайн</a>
+                <a href="#kiosk-view" class="btn">Инструкция для терминала в банке</a>
+            </div>
+        </section>
+
+        <section id="kiosk-view" class="screen">
+            <h2>Меню услуг в терминале банка</h2>
+            <ul class="service-list">
+                <li>Работа со счетом</li>
+                <li>Взять кредит</li>
+                <li>Открыть счёт</li>
+                <li>Оплата</li>
+            </ul>
+            <a href="#home" class="btn">Вернуться на главную</a>
+        </section>
+
+        <section id="new-booking" class="screen">
+            <h2>Онлайн-запись на обслуживание</h2>
+            <form class="styled-form" id="booking-form">
+                <div class="form-group"><label for="fullName">ФИО:</label><input type="text" id="fullName" required></div>
+                <div class="form-group"><label for="contact">Телефон или Email:</label><input type="text" id="contact" required></div>
+                <div class="form-group"><label for="service">Услуга:</label>
+                    <select id="service">
+                        <option>Работа со счетом</option>
+                        <option>Взять кредит</option>
+                        <option>Открыть счёт</option>
+                        <option>Оплата</option>
+                    </select>
+                </div>
+                <div class="form-group"><label for="visitDate">Дата:</label><input type="date" id="visitDate" required></div>
+                <div class="form-group"><label for="visitTime">Время:</label><input type="time" id="visitTime" required></div>
+                <button type="submit" class="btn btn-primary">Подтвердить запись</button>
+            </form>
+        </section>
+        
+        <section id="employee-login" class="screen">
+            <h2>Вход для сотрудников</h2>
+            <form class="styled-form" id="login-form">
+                <div class="form-group"><label for="login-username">Логин:</label><input type="text" id="login-username" required></div>
+                <div class="form-group"><label for="login-password">Пароль:</label><input type="password" id="login-password" required></div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
+        </section>
+        
+        <section id="employee-dashboard" class="screen">
+            <h2>Панель управления очередью</h2>
+            <form id="filter-form" class="toolbar" onsubmit="event.preventDefault()">
+                <input type="search" id="search-input" placeholder="Поиск по ФИО...">
+                <select id="sort-select" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                    <option value="time">По времени</option>
+                    <option value="author">По алфавиту</option>
+                </select>
+            </form>
+
+            <div class="list-container" id="booking-list"></div>
+            
+            <div class="pagination">
+                <button class="btn" id="load-more-btn">Загрузить еще</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 MyBank. Лабораторная работа 7.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
